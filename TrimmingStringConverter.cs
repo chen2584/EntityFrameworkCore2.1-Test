@@ -16,9 +16,6 @@ public class TrimmingStringConverter : JsonConverter
         {
             return value.Trim();
         }
-
-        Console.WriteLine("CanRead " + CanRead);
-        Console.WriteLine("CanWrite " + CanWrite);
         return reader.Value;
     }
 
