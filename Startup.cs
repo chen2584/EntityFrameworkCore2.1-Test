@@ -34,12 +34,11 @@ namespace testAPI
             ChenDbContext.connectionString = Configuration.GetConnectionString("dbChen");
 
             services.AddMvc()
-            .AddJsonOptions(options =>
-            {
-                options.SerializerSettings.Converters.Insert(0, new TrimmingStringConverter());
-            })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-            .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            .AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.Converters.Insert(0, new TrimmingStringConverter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

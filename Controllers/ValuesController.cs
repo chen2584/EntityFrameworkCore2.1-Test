@@ -38,7 +38,14 @@ namespace testAPI.Controllers
         [HttpGet("chenzz/{id}/{name}")]
         public ActionResult Get(int id, [FromQuery]string namez)
         {
-            return Ok(new  { id , namez});
+            List<string> list = new List<string>();
+            list.Add("1");
+            list.Add("2");
+            list.Add("3");
+            list.Add("4");
+            list.Add("5");
+            list.Insert(0, "6");
+            return Ok(list);
         }
 
         // POST api/values
