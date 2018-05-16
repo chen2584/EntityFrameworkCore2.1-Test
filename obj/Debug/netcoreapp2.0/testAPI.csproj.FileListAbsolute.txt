@@ -1,0 +1,4 @@
+/Users/chen/MyWork/Dotnet/testAPI/obj/Debug/netcoreapp2.0/testAPI.csprojAssemblyReference.cache
+/Users/chen/MyWork/Dotnet/testAPI/obj/Debug/netcoreapp2.0/testAPI.csproj.CoreCompileInputs.cache
+/Users/chen/MyWork/Dotnet/testAPI/obj/Debug/netcoreapp2.0/testAPI.AssemblyInfoInputs.cache
+/Users/chen/MyWork/Dotnet/testAPI/obj/Debug/netcoreapp2.0/testAPI.AssemblyInfo.cs

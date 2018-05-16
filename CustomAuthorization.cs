@@ -24,6 +24,7 @@ public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
             context.HttpContext.Items["num2"] = num;
             num++;
         }
+        Console.WriteLine("Items Count is " + context.HttpContext.Items.Count);
         //context.Result = new BadRequestObjectResult("Bad Request!");
         
     }

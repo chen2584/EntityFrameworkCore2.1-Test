@@ -12,24 +12,40 @@ namespace testAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        static List<Position> position = new List<Position>();
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<List<Position>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return position;
+        }
+
+        [HttpGet("{Latitude}/{Longitude}")]
+        public ActionResult Getz(string Latitude, string Longitude)
+        {
+            position.Add(new Position { Latitude = Latitude, Longitude = Longitude });
+            return Ok(new { Latitude, Longitude });
+        }
+
+        public ActionResult<string> Getzz(string Latitude, string Longitude)
+        {
+            position.Add(new Position { Latitude = Latitude, Longitude = Longitude });
+            return Ok(new { Latitude, Longitude });
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("chenzz/{id}/{name}")]
+        public ActionResult Get(int id, [FromQuery]string namez)
         {
-            return "value";
+            return Ok(new  { id , namez});
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post(User user)
         {
+            return Ok(user);
         }
 
         // PUT api/values/5
@@ -69,7 +85,7 @@ namespace testAPI.Controllers
 
                 List<Order> orderList = new List<Order>();
                 orderList.Add(new Order { UserId=1, ProductId=1, value=10 });
-                orderList.Add(new Order { UserId=2, ProductId=2, value=20 });
+                orderList.Add(new Order { UserId=2, ProductId=2, value=20 }); 
                 orderList.Add(new Order { UserId=1, ProductId=3, value=30 });
                 await db.Order.AddRangeAsync(orderList);
                 await db.SaveChangesAsync();
@@ -107,18 +123,19 @@ namespace testAPI.Controllers
                 List<UserInfo> user = await db.UserInfo.ToListAsync<UserInfo>();
                 UserInfo userinfo = user[0];
 
-                List<Order> order = userinfo.Order;
+                var order = userinfo.Order.Select(x => new { x.OrderId, x.UserId, x.ProductId});
                 
-                return Ok(new { order= order });
+                return Ok(order);
             }
         }
 
+        [TokenAuthenticationFilter]
         [HttpGet("testeager")]
         public async Task<ActionResult> testEager()
         {
-            using(ChenDbContext db = new ChenDbContext())
+            using(ChenDbContext db = new ChenDbContext(isLazy: true))
             {
-                var user = await db.Product.ToListAsync();
+                var user = await db.UserInfo.Include(x => x.Order).Where(x => x.Id == 1).ToListAsync();
                 
                 return Ok(user);
             }
