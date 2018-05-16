@@ -45,7 +45,8 @@ namespace testAPI.Controllers
         [HttpPost]
         public ActionResult Post(User user)
         {
-            return Ok(user);
+            //TrimStrings.TrimStringProperties(ref user);
+            return Ok(new { user, user.firstName.Length});
         }
 
         // PUT api/values/5
