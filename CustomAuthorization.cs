@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
 {
 
     public void OnAuthorization(AuthorizationFilterContext context)
     {
-        var configuration = context.HttpContext.RequestServices.GetService(typeof(IConfiguration)) as IConfiguration;
+        var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
         Console.WriteLine(configuration.GetConnectionString("dbChen"));
         Console.WriteLine("AuthorizationAsync Filter Executed");
 
