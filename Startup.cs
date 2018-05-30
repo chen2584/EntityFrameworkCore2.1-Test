@@ -33,6 +33,7 @@ namespace testAPI
 
             ChenDbContext.connectionString = Configuration.GetConnectionString("dbChen");
 
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc()
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
             .AddJsonOptions(options => {

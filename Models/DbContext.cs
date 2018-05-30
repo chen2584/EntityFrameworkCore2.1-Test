@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
 
 namespace testAPI.Models
 {
@@ -16,6 +17,10 @@ namespace testAPI.Models
         {
 
         }
+
+        private readonly IConfiguration configuration;
+        public ChenDbContext(IConfiguration configuration) =>
+            this.configuration = configuration;
 
         public DbSet<UserInfo> UserInfo { get; set; }
         public DbSet<Order> Order { get; set; }
