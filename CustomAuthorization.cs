@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
 {
-
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();

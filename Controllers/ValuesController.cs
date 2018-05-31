@@ -51,10 +51,11 @@ namespace testAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post(User user)
+        public ActionResult Post()
         {
-            //TrimStrings.TrimStringProperties(ref user);
-            return Ok(new { user, user.firstName.Length});
+            //var chen = Request.Form.Files.FirstOrDefault() == null ? "Null" : "Mai now";
+            var chen = Request.Form.Files.ToList();
+            return Ok(chen);
         }
 
         // PUT api/values/5
