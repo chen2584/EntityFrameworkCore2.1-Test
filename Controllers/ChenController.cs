@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using testAPI.Models;
@@ -12,13 +14,14 @@ namespace testAPI.Controllers
     public class ChenController : ControllerBase
     {
         [HttpGet]
-        public ActionResult Chen(int num)
+        public ActionResult Chen(int num, int chen, [FromServices] IConfiguration Configuration, [FromServices] IHostingEnvironment env)
         {
-            using(ChenDbContext db = new ChenDbContext())
+            return Ok(Configuration.GetConnectionString("dbChen"));
+            /*using(ChenDbContext db = new ChenDbContext())
             {
                 var chen = db.Customer.ToList();
                 return Ok(chen);
-            }
+            }*/
             /*var chen = Request.Query["a"];
             var result = chen;
             var header = Request.Headers.TryGetValue("chen", out Microsoft.Extensions.Primitives.StringValues value);

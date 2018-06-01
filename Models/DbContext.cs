@@ -26,6 +26,8 @@ namespace testAPI.Models
         public DbSet<Order> Order { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<OrderNew> OrderNew { get; set; }
+        //public DbSet<StreetAddress> StreetAddress { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString).ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning));
@@ -76,5 +78,19 @@ namespace testAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string CustomerId { get; set; }
         public string CustomerName { get; set; }
+    }
+
+    [Owned]
+    public class StreetAddress
+    {
+        public string Street { get; set; }
+        public string City { get; set; }
+
+    }
+
+    public class OrderNew
+    {
+        public int Id { get; set; }
+        public StreetAddress ShippingAddress { get; set; }
     }
 }
