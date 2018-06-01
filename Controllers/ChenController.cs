@@ -30,9 +30,9 @@ namespace testAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string[]> Chenz([FromBody]string[] test)
+        public ActionResult<User> Chenz(User user)
         {
-            return test;
+            return user;
         }
     }
 }

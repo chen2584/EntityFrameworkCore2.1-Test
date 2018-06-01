@@ -22,6 +22,13 @@ namespace testAPI.Controllers
             return position;
         }
 
+        [HttpPost("testarray")]
+        public ActionResult testStringArray([FromBody]string chen)
+        {
+                var chenz = chen.Length == 0 ? "Null" : chen.Length.ToString();
+                return Ok(chenz);
+        }
+
         [HttpGet("{Latitude}/{Longitude}")]
         public ActionResult Getz(string Latitude, string Longitude)
         {
@@ -62,7 +69,7 @@ namespace testAPI.Controllers
         [HttpPut]
         public ActionResult Put(int i)
         {
-            return Ok(new { firstName="Worameth", last="Lastname", num=i});
+            return Ok(new { firstName = "Worameth", last = "Lastname", num = i });
         }
 
         // DELETE api/values/5
@@ -75,28 +82,28 @@ namespace testAPI.Controllers
         [HttpGet("createdb")]
         public async Task<ActionResult> createDb()
         {
-            using(ChenDbContext db = new ChenDbContext())
+            using (ChenDbContext db = new ChenDbContext())
             {
                 await db.Database.EnsureCreatedAsync();
 
                 List<UserInfo> userList = new List<UserInfo>();
-                userList.Add(new UserInfo { userName="worameth", lastName="semapat", email="worameth.semapat@gmail.com" });
-                userList.Add(new UserInfo { userName="worameth2", lastName="semapat2", email="worameth.semapat2@gmail.com" });
-                userList.Add(new UserInfo { userName="worameth3", lastName="semapat3", email="worameth.semapat3@gmail.com" });
+                userList.Add(new UserInfo { userName = "worameth", lastName = "semapat", email = "worameth.semapat@gmail.com" });
+                userList.Add(new UserInfo { userName = "worameth2", lastName = "semapat2", email = "worameth.semapat2@gmail.com" });
+                userList.Add(new UserInfo { userName = "worameth3", lastName = "semapat3", email = "worameth.semapat3@gmail.com" });
                 await db.UserInfo.AddRangeAsync(userList);
                 await db.SaveChangesAsync();
 
                 List<Product> productList = new List<Product>();
-                productList.Add(new Product { productName="Item1", remain=10, price=10000 });
-                productList.Add(new Product { productName="Item2", remain=20, price=20000 });
-                productList.Add(new Product { productName="Item3", remain=30, price=30000 });
+                productList.Add(new Product { productName = "Item1", remain = 10, price = 10000 });
+                productList.Add(new Product { productName = "Item2", remain = 20, price = 20000 });
+                productList.Add(new Product { productName = "Item3", remain = 30, price = 30000 });
                 await db.Product.AddRangeAsync(productList);
                 await db.SaveChangesAsync();
 
                 List<Order> orderList = new List<Order>();
-                orderList.Add(new Order { UserId=1, ProductId=1, value=10 });
-                orderList.Add(new Order { UserId=2, ProductId=2, value=20 }); 
-                orderList.Add(new Order { UserId=1, ProductId=3, value=30 });
+                orderList.Add(new Order { UserId = 1, ProductId = 1, value = 10 });
+                orderList.Add(new Order { UserId = 2, ProductId = 2, value = 20 });
+                orderList.Add(new Order { UserId = 1, ProductId = 3, value = 30 });
                 await db.Order.AddRangeAsync(orderList);
                 await db.SaveChangesAsync();
             }
@@ -106,7 +113,7 @@ namespace testAPI.Controllers
         [HttpGet("dropdb")]
         public async Task<ActionResult> dropDb()
         {
-            using(ChenDbContext db = new ChenDbContext())
+            using (ChenDbContext db = new ChenDbContext())
             {
                 await db.Database.EnsureDeletedAsync();
             }
@@ -116,7 +123,7 @@ namespace testAPI.Controllers
         [HttpGet("testdelete")]
         public async Task<ActionResult> testdelete()
         {
-            using(ChenDbContext db = new ChenDbContext())
+            using (ChenDbContext db = new ChenDbContext())
             {
                 UserInfo result = await db.UserInfo.Include(x => x.Order).FirstOrDefaultAsync();
                 db.UserInfo.Remove(result);
@@ -128,13 +135,13 @@ namespace testAPI.Controllers
         [HttpGet("testlazy")]
         public async Task<ActionResult> testLazy()
         {
-            using(ChenDbContext db = new ChenDbContext())
+            using (ChenDbContext db = new ChenDbContext())
             {
                 List<UserInfo> user = await db.UserInfo.ToListAsync<UserInfo>();
                 UserInfo userinfo = user[0];
 
-                var order = userinfo.Order.Select(x => new { x.OrderId, x.UserId, x.ProductId});
-                
+                var order = userinfo.Order.Select(x => new { x.OrderId, x.UserId, x.ProductId });
+
                 return Ok(order);
             }
         }
@@ -143,10 +150,10 @@ namespace testAPI.Controllers
         [HttpGet("testeager")]
         public async Task<ActionResult> testEager()
         {
-            using(ChenDbContext db = new ChenDbContext(isLazy: true))
+            using (ChenDbContext db = new ChenDbContext(isLazy: true))
             {
                 var user = await db.UserInfo.Include(x => x.Order).Where(x => x.Id == 1).ToListAsync();
-                
+
                 return Ok(user);
             }
         }
