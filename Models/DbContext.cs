@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace testAPI.Models
 {
@@ -30,8 +31,10 @@ namespace testAPI.Models
         //public DbSet<StreetAddress> StreetAddress { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var lf = new LoggerFactory();
+            lf.AddProvider(new MyLoggerProvider());
             //optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString).ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning));
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseLoggerFactory(lf).UseSqlServer(connectionString);
         }
     }
 
@@ -39,7 +42,7 @@ namespace testAPI.Models
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(50, MinimumLength=10)]
+        [StringLength(50, MinimumLength = 10)]
         public string userName { get; set; }
         [Required]
         [MaxLength(30)]

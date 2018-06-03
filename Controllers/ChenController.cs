@@ -1,7 +1,10 @@
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
@@ -33,6 +36,18 @@ namespace testAPI.Controllers
         public ActionResult<User> Chenz(User user)
         {
             return user;
+        }
+
+        [HttpGet("testquery")]
+        public ActionResult TestQuery()
+        {
+            using(ChenDbContext db = new ChenDbContext())
+            {
+                var data = db.UserInfo.Where(x => x.Id == 1);
+                data = data.Where(x => x.lastName == "Chen is number one");
+                data = data.Take(10);
+                return Ok(data.ToList());
+            }
         }
     }
 }
