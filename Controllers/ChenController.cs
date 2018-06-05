@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,8 +47,17 @@ namespace testAPI.Controllers
                 var data = db.UserInfo.Where(x => x.Id == 1);
                 data = data.Where(x => x.lastName == "Chen is number one");
                 data = data.Take(10);
-                return Ok(data.ToList());
+                return Ok(data.Select(x => new {x.lastName }).AsNoTracking().ToList());
             }
+        }
+
+        [HttpGet("testnull")]
+        public ActionResult<Position> TestNullVariable()
+        {
+            List<Position> positionList = new List<Position>();
+            positionList.Add(new Position { Longitude = "1234", Latitude = "123456" });
+            var position = positionList.Where(x => x.Latitude == "12345").FirstOrDefault();
+            return position; // it will return 204 (No Content) even we force Ok(position)
         }
     }
 }
