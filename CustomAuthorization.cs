@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using testAPI.Models;
 
 public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
 {
@@ -27,6 +28,10 @@ public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
                 context.HttpContext.Items["num"] = num;
             context.HttpContext.Items["num2"] = num;
             num++;
+            Position position = new Position();
+            position.Latitude = "123";
+            position.Longitude = "456";
+            context.HttpContext.Items["Position"] = position;
         }
         Console.WriteLine("Items Count is " + context.HttpContext.Items.Count);
         //context.Result = new BadRequestObjectResult("Bad Request!");

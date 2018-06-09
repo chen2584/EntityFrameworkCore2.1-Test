@@ -42,12 +42,12 @@ namespace testAPI.Controllers
         [HttpGet("testquery")]
         public ActionResult TestQuery()
         {
-            using(ChenDbContext db = new ChenDbContext())
+            using (ChenDbContext db = new ChenDbContext())
             {
                 var data = db.UserInfo.Where(x => x.Id == 1);
                 data = data.Where(x => x.lastName == "Chen is number one");
                 data = data.Take(10);
-                return Ok(data.Select(x => new {x.lastName }).AsNoTracking().ToList());
+                return Ok(data.Select(x => new { x.lastName }).AsNoTracking().ToList());
             }
         }
 
@@ -77,12 +77,39 @@ namespace testAPI.Controllers
 
             var position = positionList.Where(x => x.Latitude.Equals("456"));
 
-            foreach(var data in position)
+            foreach (var data in position)
             {
                 data.Latitude = "5555";
             }
 
             return Ok(position); //this will return empty string
+        }
+
+        [HttpGet("testfilter2")]
+        [TokenAuthenticationFilter]
+        public ActionResult TestFilter2()
+        {
+            List<List<string>> stringList = new List<List<string>>()
+            {
+                new List<string> { "Chen1" },
+                new List<string> { "Chen2" }
+            };
+
+            foreach(var list in stringList)
+            {
+                list[0] = "Worameth Semapat";
+            }
+
+            return Ok(stringList); //this will return empty string
+        }
+
+        [HttpGet("testitems")]
+        [TokenAuthenticationFilter]
+        public ActionResult TestItems()
+        {
+            var position = HttpContext.Items["Position"] as Position; //Same instance
+            position.Longitude = "5555555";
+            return Ok(HttpContext.Items["Position"]);
         }
     }
 }
