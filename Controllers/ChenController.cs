@@ -59,5 +59,27 @@ namespace testAPI.Controllers
             var position = positionList.Where(x => x.Latitude == "12345").FirstOrDefault();
             return position; // it will return 204 (No Content) even we force Ok(position)
         }
+
+        [HttpPut("testnull")]
+        public ActionResult TestPutReturn()
+        {
+            return Ok("Chemz");
+        }
+
+        [HttpGet("testfilter")]
+        public ActionResult TestFilter()
+        {
+            List<Position> positionList = new List<Position>()
+            {
+                new Position { Longitude="1234", Latitude="456" },
+                new Position { Longitude="456", Latitude="123" }
+            };
+
+            Position position = positionList.FirstOrDefault();
+            position.Latitude = "567";
+            position.Longitude = "8910";
+
+            return Ok(positionList);
+        }
     }
 }
