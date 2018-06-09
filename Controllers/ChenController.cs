@@ -75,11 +75,14 @@ namespace testAPI.Controllers
                 new Position { Longitude="456", Latitude="123" }
             };
 
-            Position position = positionList.FirstOrDefault();
-            position.Latitude = "567";
-            position.Longitude = "8910";
+            var position = positionList.Where(x => x.Latitude.Equals("456"));
 
-            return Ok(positionList);
+            foreach(var data in position)
+            {
+                data.Latitude = "5555";
+            }
+
+            return Ok(position); //this will return empty string
         }
     }
 }
