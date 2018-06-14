@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,8 +18,12 @@ namespace testAPI.Controllers
 
         // GET api/values
         [HttpGet]
+        [TokenAuthenticationFilter]
         public ActionResult<List<Position>> Get()
         {
+            Console.WriteLine("Name: " + User.Identity.Name);
+            Console.WriteLine("Total Claim: " + User.Claims.Count());
+            Console.WriteLine("GivenName: " + User.FindFirst(ClaimTypes.GivenName).Value);
             return position;
         }
 
