@@ -86,7 +86,7 @@ namespace testAPI.Controllers
         }
 
         [HttpGet("testfilter2")]
-        [TokenAuthenticationFilter]
+        [TokenAuthenticationFilter(Roles="")]
         public ActionResult TestFilter2()
         {
             List<List<string>> stringList = new List<List<string>>()

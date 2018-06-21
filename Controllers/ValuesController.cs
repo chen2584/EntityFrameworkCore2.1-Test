@@ -163,5 +163,13 @@ namespace testAPI.Controllers
             }
         }
 
+        [HttpGet("getposition")]
+        public Position getPosition()
+        {
+            var position = new Position { Latitude = "123", Longitude = "456" };
+            position.CalculateLocation();
+            return position;
+        }
+
     }
 }

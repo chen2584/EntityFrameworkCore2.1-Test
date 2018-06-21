@@ -11,6 +11,7 @@ using testAPI.Models;
 
 public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
 {
+    public string Roles { get; set; }
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();

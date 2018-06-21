@@ -1,5 +1,7 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace testAPI.Models
 {
@@ -14,8 +16,14 @@ namespace testAPI.Models
 
     public class Position
     {
+        [JsonIgnore]
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+
+        public void CalculateLocation()
+        {
+            Console.WriteLine(Latitude + Longitude);
+        }
 
     }
 
