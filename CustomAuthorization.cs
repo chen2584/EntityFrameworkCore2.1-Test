@@ -37,10 +37,20 @@ public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
             context.HttpContext.Items["Position"] = position;
 
             //Custom Claim
-            var identity = (ClaimsIdentity)context.HttpContext.User.Identity;
+            /*var identity = (ClaimsIdentity)context.HttpContext.User.Identity;
             identity.AddClaim(new Claim(ClaimTypes.Role, "Administrator"));
             identity.AddClaim(new Claim(ClaimTypes.GivenName, "A Person"));
-            identity.AddClaim(new Claim(ClaimTypes.Name, "Chen"));
+            identity.AddClaim(new Claim(ClaimTypes.Name, "Chen"));*/
+
+            context.HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity
+            (
+                new Claim[]
+                {
+                    new Claim(ClaimTypes.Role, "Administrator"),
+                    new Claim(ClaimTypes.GivenName, "A Person"),
+                    new Claim(ClaimTypes.Name, "Chen")
+                }, "CustomAuth")
+            );
 
 
         }

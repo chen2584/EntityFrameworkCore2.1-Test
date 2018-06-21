@@ -21,9 +21,12 @@ namespace testAPI.Controllers
         [TokenAuthenticationFilter]
         public ActionResult<List<Position>> Get()
         {
+
             Console.WriteLine("Name: " + User.Identity.Name);
             Console.WriteLine("Total Claim: " + User.Claims.Count());
             Console.WriteLine("GivenName: " + User.FindFirst(ClaimTypes.GivenName).Value);
+            Console.WriteLine("IsAuthenticated: " + User.Identity.IsAuthenticated);
+            Console.WriteLine("Auth Type: " + User.Identity.AuthenticationType);
             return position;
         }
 
