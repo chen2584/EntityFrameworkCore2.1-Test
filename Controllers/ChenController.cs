@@ -14,7 +14,7 @@ using testAPI.Models;
 namespace testAPI.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
     public class ChenController : ControllerBase
     {
         [HttpGet]
@@ -33,7 +33,7 @@ namespace testAPI.Controllers
             var header = Request.Headers.TryGetValue("chen", out Microsoft.Extensions.Primitives.StringValues value);
 
             Console.WriteLine("Value length is " + chen.Count);
-            foreach(var val in chen)
+            foreach (var val in chen)
             {
                 Console.WriteLine("Valus is: " + val);
             }
@@ -41,6 +41,15 @@ namespace testAPI.Controllers
 
             return Ok(new { num = num, value = chen.ToString(), testStringValue = testStringValue.ToString() });
             //return Ok(new { num = num, chen = chen, value = value, chenLength = value.ToArray().Length, valuenull = string.IsNullOrEmpty(value) });
+        }
+
+        [HttpGet("testroute/{num}")]
+        public ActionResult TestRoute([FromRoute]float num)
+        {
+            string chen = null;
+            Console.WriteLine(chen);
+            return Ok(new { num, chen });
+
         }
 
         [HttpPost]
@@ -96,7 +105,7 @@ namespace testAPI.Controllers
         }
 
         [HttpGet("testfilter2")]
-        [TokenAuthenticationFilter(Roles="")]
+        [TokenAuthenticationFilter(Roles = "")]
         public ActionResult TestFilter2()
         {
             List<List<string>> stringList = new List<List<string>>()
@@ -105,7 +114,7 @@ namespace testAPI.Controllers
                 new List<string> { "Chen2" }
             };
 
-            foreach(var list in stringList)
+            foreach (var list in stringList)
             {
                 list[0] = "Worameth Semapat";
             }
