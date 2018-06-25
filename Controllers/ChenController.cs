@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,10 @@ using testAPI.Models;
 namespace testAPI.Controllers
 {
     [Route("api/[controller]")]
-    //[ApiController]
+    [ApiController]
     public class ChenController : ControllerBase
     {
-        [HttpGet]
+        [Authorize, HttpGet]
         public ActionResult Chen(float num)
         {
             //Console.WriteLine($"Controller: {RouteData.Values["controller"]} Action: {RouteData.Values["action"]}");
