@@ -12,3 +12,17 @@
 /Users/chen/MyWork/Dotnet/testAPI/obj/Debug/netcoreapp2.1/testAPI.RazorTargetAssemblyInfo.cache
 /Users/chen/MyWork/Dotnet/testAPI/obj/Debug/netcoreapp2.1/testAPI.dll
 /Users/chen/MyWork/Dotnet/testAPI/obj/Debug/netcoreapp2.1/testAPI.pdb
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/bin/Debug/netcoreapp2.1/testAPI.deps.json
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/bin/Debug/netcoreapp2.1/testAPI.runtimeconfig.json
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/bin/Debug/netcoreapp2.1/testAPI.runtimeconfig.dev.json
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/bin/Debug/netcoreapp2.1/testAPI.dll
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/bin/Debug/netcoreapp2.1/testAPI.pdb
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.csprojAssemblyReference.cache
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.csproj.CoreCompileInputs.cache
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.RazorAssemblyInfo.cache
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.RazorAssemblyInfo.cs
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.AssemblyInfoInputs.cache
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.AssemblyInfo.cs
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.RazorTargetAssemblyInfo.cache
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.dll
+/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/Debug/netcoreapp2.1/testAPI.pdb

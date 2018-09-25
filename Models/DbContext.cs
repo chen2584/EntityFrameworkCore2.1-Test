@@ -31,10 +31,11 @@ namespace testAPI.Models
         //public DbSet<StreetAddress> StreetAddress { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var lf = new LoggerFactory();
-            lf.AddProvider(new MyLoggerProvider());
+            //var lf = new LoggerFactory();
+            //lf.AddProvider(new MyLoggerProvider());
             //optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString).ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning));
-            optionsBuilder.UseLoggerFactory(lf).UseSqlServer(connectionString);
+            //optionsBuilder.UseLoggerFactory(lf).UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 
