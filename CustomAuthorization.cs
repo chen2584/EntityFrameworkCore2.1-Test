@@ -47,7 +47,7 @@ public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
                 new Claim[]
                 {
                     new Claim(ClaimTypes.Role, "Administrator"),
-                    new Claim(ClaimTypes.GivenName, "A Person"),
+                    new Claim(ClaimTypes.GivenName, GivenName.Member.ToString()),
                     new Claim(ClaimTypes.Name, "Chen")
                 }, "CustomAuth")
             );
@@ -58,4 +58,11 @@ public class TokenAuthenticationFilter : Attribute, IAuthorizationFilter
         //context.Result = new BadRequestObjectResult("Bad Request!");
 
     }
+}
+
+public enum GivenName
+{
+    Member,
+    Moderator,
+    Administrator
 }

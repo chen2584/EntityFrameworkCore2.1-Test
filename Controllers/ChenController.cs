@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,7 @@ namespace testAPI.Controllers
     [ApiController]
     public class ChenController : ControllerBase
     {
-        [Authorize, HttpGet]
+        [TokenAuthenticationFilter, HttpGet]
         public ActionResult Chen(float num)
         {
             //Console.WriteLine($"Controller: {RouteData.Values["controller"]} Action: {RouteData.Values["action"]}");
@@ -39,7 +40,8 @@ namespace testAPI.Controllers
                 Console.WriteLine("Valus is: " + val);
             }
             Console.WriteLine("Full Value is " + chen);
-
+            Console.WriteLine($"Is GivenName Member: {HttpContext.User.HasClaim(x => x.Type == ClaimTypes.GivenName && x.Value.Equals(GivenName.Member))}");
+            Console.WriteLine($"Is Authorization: {HttpContext.User.Identity.IsAuthenticated}");
             return Ok(new { num = num, value = chen.ToString(), testStringValue = testStringValue.ToString() });
             //return Ok(new { num = num, chen = chen, value = value, chenLength = value.ToArray().Length, valuenull = string.IsNullOrEmpty(value) });
         }
@@ -66,8 +68,8 @@ namespace testAPI.Controllers
             {
                 var data = db.UserInfo.Where(x => x.Id == 1);
                 data = data.Where(x => x.lastName == "Chen is number one");
-                data = data.Take(10);
-                return Ok(data.Select(x => new { x.lastName }).AsNoTracking().ToList());
+                return Ok(data.ToList());
+                //return Ok(data.Select(x => new { x.lastName }).AsNoTracking().ToList());
             }
         }
 

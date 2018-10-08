@@ -11838,11 +11838,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/chen/MyWork/Dotnet/testAPI/testAPI.csproj",
+      "projectUniqueName": "/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/testAPI.csproj",
       "projectName": "testAPI",
-      "projectPath": "/Users/chen/MyWork/Dotnet/testAPI/testAPI.csproj",
+      "projectPath": "/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/testAPI.csproj",
       "packagesPath": "/Users/chen/.nuget/packages/",
-      "outputPath": "/Users/chen/MyWork/Dotnet/testAPI/obj/",
+      "outputPath": "/Users/chen/MyWork/Dotnet/EntityFrameworkCore2.1-Test/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
